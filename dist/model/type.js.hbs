@@ -1,0 +1,15 @@
+export enum TypeKeys {
+  {{ constantCase name }}_SAGA_GET = '{{ constantCase name }}_SAGA_GET',
+  {{ constantCase name }}_SAGA_LOADING = '{{ constantCase name }}_SAGA_LOADING',
+  {{ constantCase name }}_SAGA_ERROR = '{{ constantCase name }}_SAGA_ERROR',
+  {{ constantCase name }}_SAGA_SUCCESS = '{{ constantCase name }}_SAGA_SUCCESS',
+}
+
+type {{ camelCase name }}ResultType = {
+};
+
+export interface {{ properCase name }}StateType {
+  loading: boolean;
+  error?: string;
+  result?: {{ camelCase name }}ResultType;
+}

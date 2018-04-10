@@ -1,0 +1,10 @@
+import { TypeKeys } from './type';
+type payloadType = {
+};
+export const getFromLeapApi = (payload: payloadType) => {
+  return {
+    type: TypeKeys.{{ constantCase name }}_SAGA_GET,
+    // tslint:disable-next-line:object-shorthand-properties-first
+    payload,
+  };
+};

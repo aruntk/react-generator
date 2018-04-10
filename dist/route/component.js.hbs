@@ -1,0 +1,61 @@
+import * as React from 'react';
+{{#if connectedComponent}}
+import { connect } from 'react-redux';
+import { RootStateType } from '../../models/type';
+import { Dispatch } from 'redux';
+{{/if}}
+{{#if hasModel}}
+import {{ properCase model }}Reducer from '../../../models/{{ properCase model }}/reducer';
+import {{ properCase model }} from '../../../models/{{ properCase model }}/saga';
+{{/if}}
+
+interface {{ properCase name }}Props {
+  {{#if connectedComponent}}
+  dispatch: Dispatch<{}>;
+  {{/if}}
+};
+interface {{ properCase name }}State {
+};
+class {{ properCase name }} extends React.Component<{{ properCase name }}Props, {{ properCase name }}State> {
+  state = {};
+  render() {
+    return (
+      <div>
+      </div>
+    );
+  }
+}
+
+{{#if connectedComponent}}
+
+const mapState = (state: RootStateType) => ({
+});
+
+export default {
+  Component: connect(mapState)({{ properCase name }}),
+  {{#if hasModel}}
+  reducer: {
+    name: '{{ camelCase name }}',
+    reducer: {{ properCase name }}Reducer,
+  },
+  sagas: {
+    name: '{{ camelCase name }}',
+    sagas: {{ properCase name }}Saga,
+  }
+  {{/if}}
+};
+{{else}}
+export default {
+  Component: {{ properCase name }},
+  {{#if hasModel}}
+  reducer: {
+    name: '{{ camelCase name }}',
+    reducer: {{ properCase name }}Reducer,
+  },
+  sagas: {
+    name: '{{ camelCase name }}',
+    sagas: {{ properCase name }}Saga,
+  }
+  {{/if}}
+};
+{{/if}}

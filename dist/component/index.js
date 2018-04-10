@@ -52,9 +52,9 @@ module.exports = {
     let relativePath;
 
     if (data.relativePath) {
-      relativePath = 'src/components/' + data.relativePath + '/{{properCase name}}.js'
+      relativePath = 'frontend/src/components/' + data.relativePath + '/{{properCase name}}/index.tsx'
     } else {
-      relativePath = 'src/components/{{properCase name}}.js'
+      relativePath = 'frontend/src/components/{{properCase name}}/index.tsx'
     }
 
     const actions = [{

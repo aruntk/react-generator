@@ -1,28 +1,28 @@
-import React, { PropTypes } from 'react';
+import * as React from 'react';
 {{#if connectedComponent}}
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
+import { RootStateType } from '../../models/type';
+import { Dispatch } from 'redux';
 {{/if}}
 
-const {{ properCase name }} = () => {
+type {{ properCase name }}Props = {
+{{#if connectedComponent}}
+  dispatch: Dispatch<{}>;
+{{/if}}
+};
+
+export const {{ properCase name }}: React.SFC<{{ properCase name }}Props> = (props) => {
   return (
     <div>
     </div>
   );
-}
-
-{{ properCase name }}.propTypes = {
 };
 
 {{#if connectedComponent}}
-const mapState = (state) => ({
+const mapState = (state: RootStateType) => ({
 });
 
-const mapDispatch = (dispatch) => ({
-  // actions: bindActionCreators(yourActions, dispatch)
-});
-
-export default connect(mapState, mapDispatch)({{ properCase name }});
+export default connect(mapState)({{ properCase name }});
 {{else}}
 export default {{ properCase name }};
 {{/if}}

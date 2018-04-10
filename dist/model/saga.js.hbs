@@ -1,0 +1,40 @@
+import { call, put, takeEvery, select } from 'redux-saga/effects';
+import { TypeKeys } from './type';
+import { fetchData } from '../../utils/fetch';
+import { leapApis } from '../../services/api';
+
+function* {{ properCase name}}Saga({ payload = {}: { type: string } }) {
+  const state = yield select();
+  const api = 'leap api url';
+  const { token } = state.auth;
+  yield put({
+    type: TypeKeys.{{ constantCase name }}_SAGA_LOADING,
+    payload: { loading: true },
+  });
+  const options = {
+    method: 'GET',
+    headers: {
+      'Authorization': `bearer ${token}`,
+    },
+  };
+  try {
+    const result = yield call(fetchData, api, options);
+    yield put({ type: TypeKeys.{{ constantCase name }}_SAGA_SUCCESS, payload: { result });
+  } catch (error) {
+    const errorMsg = typeof error === 'string' ? error : error.message;
+    yield put({
+      type: TypeKeys.{{ constantCase name }}_SAGA_ERROR,
+      payload: { error: errorMsg },
+    });
+     // tslint:disable-next-line:no-console
+    console.log(error);
+  }
+  yield put({
+    type: TypeKeys.{{ constantCase name }}_SAGA_LOADING,
+    payload: { loading: false },
+  });
+}
+
+export default [
+  takeEvery(TypeKeys.LEAP_GET_API, getFromLeapApi),
+];

@@ -22,6 +22,21 @@ module.exports = {
   },
   {
     type: 'confirm',
+    name: 'hasModel',
+    default: true,
+    message: 'Do you want to connect a model with this route?'
+  },
+  {
+    type: 'input',
+    name: 'model',
+    message: 'Select related model',
+    validate: (value) => {
+      if ((/.+/).test(value)) { return true; }
+      return 'model is required';
+    }
+  },
+  {
+    type: 'confirm',
     name: 'connectedComponent',
     default: true,
     message: 'Do you want a connected component?'
@@ -37,24 +52,24 @@ module.exports = {
 
     switch (data.type) {
       case 'Stateless': {
-        componentTemplate = path.resolve(__dirname, '../component/stateless.js.hbs');
+        componentTemplate = path.resolve(__dirname, './stateless.js.hbs');
         break;
       }
       case 'Component': {
-        componentTemplate = path.resolve(__dirname, '../component/component.js.hbs');
+        componentTemplate = path.resolve(__dirname, './component.js.hbs');
         break;
       }
       default: {
-        componentTemplate = path.resolve(__dirname, '../component/stateless.js.hbs');
+        componentTemplate = path.resolve(__dirname, './stateless.js.hbs');
       }
     }
 
     let relativePath;
 
     if (data.relativePath) {
-      relativePath = 'src/containers/' + data.relativePath + '/{{properCase name}}.js'
+      relativePath = 'frontend/src/routes/' + data.relativePath + '/{{properCase name}}/index.tsx'
     } else {
-      relativePath = 'src/containers/{{properCase name}}.js'
+      relativePath = 'frontend/src/routes/{{properCase name}}/index.tsx'
     }
 
     const actions = [{

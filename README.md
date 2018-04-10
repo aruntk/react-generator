@@ -12,3 +12,14 @@ Plop generator for React and Redux
     ```javascript
     module.exports = require('react-generator-templates');
     ```
+
+## Using templates
+
+```sh
+# to add a frontend model
+yarn run add-model
+# to add a frontend route
+yarn run add-route
+# to add a frontend component
+yarn run add-component
+```

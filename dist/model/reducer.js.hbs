@@ -1,0 +1,31 @@
+import { TypeKeys, {{ properCase name }}StateType } from './type';
+import * as Immutable from 'seamless-immutable';
+import { ActionType } from '../constants/actions';
+
+const iState: {{ properCase name }}StateType = {
+  loading: false,
+};
+
+export const initialState = Immutable.from(iState);
+
+export const {{ properCase name }}Reducer = (state = initialState, action: ActionType<{}>) => {
+  switch (action.type) {
+    case TypeKeys.{{ constantCase name }}_SAGA_LOADING: {
+      return { ...state, loading: action.payload };
+    }
+    case TypeKeys.{{ constantCase name }}_SAGA_ERROR: {
+      return { ...state, error: action.payload };
+    }
+    case TypeKeys.{{ constantCase name }}_SAGA_SUCCESS: {
+      return { ...state, result: action.payload };
+    }
+    case 'RESET_STATE': {
+      return initialState;
+    }
+    default: {
+      return state;
+    }
+  }
+};
+
+export default {{ properCase name }}Reducer;
